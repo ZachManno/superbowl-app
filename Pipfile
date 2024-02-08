@@ -8,6 +8,7 @@ requests = "*"
 fastapi = "*"
 uvicorn = "*"
 nicegui = "*"
+pandas = "*"
 
 [dev-packages]
 pytest = "*"
