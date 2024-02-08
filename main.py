@@ -60,6 +60,8 @@ def get_leaderboard():
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
 
+
+ui.image('/Users/zman/PycharmProjects/superbowl-app/assets/s-l1600.jpeg').classes('object-fill h-60 w-full')
 with ui.row():
     get_leaderboard()
     get_answers()
