@@ -9,6 +9,7 @@ from pandas.api.types import is_bool_dtype, is_numeric_dtype
 
 #from answers import get_answer_table
 from answers import get_answers
+from submissions import get_submissions
 
 app = FastAPI()
 
@@ -34,22 +35,27 @@ def update_item(item_id: int, item: Item):
     return {"item_name": item.name, "item_id": item_id}
 
 
-columns = [
-    {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True},
-    {'name': 'age', 'label': 'Age', 'field': 'age', 'sortable': True},
-]
-rows = [
-    {'id': 0, 'name': 'Alice', 'age': 18},
-    {'id': 1, 'name': 'Bob', 'age': 21},
-    {'id': 2, 'name': 'Lionel', 'age': 19},
-    {'id': 3, 'name': 'Michael', 'age': 32},
-    {'id': 4, 'name': 'Julie', 'age': 12},
-    {'id': 5, 'name': 'Livia', 'age': 25},
-    {'id': 6, 'name': 'Carol'},
-]
+def get_leaderboard_cols():
+    return [
+        {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True},
+        {'name': 'score', 'label': 'Score', 'field': 'score', 'sortable': True},
+    ]
+
+
+def get_leaderboard_rows():
+    return [
+        {'id': 0, 'name': 'Alice', 'score': 0},
+        {'id': 1, 'name': 'Bob', 'score': 3},
+        {'id': 2, 'name': 'Lionel', 'score': 6},
+        {'id': 3, 'name': 'Michael', 'score': 8},
+        {'id': 4, 'name': 'Julie', 'score': 4},
+        {'id': 5, 'name': 'Livia', 'score': 1},
+        {'id': 6, 'name': 'Carol', 'score': 5},
+    ]
+
 
 def get_leaderboard():
-    with ui.table(title='My Team', columns=columns, rows=rows, selection='multiple', pagination=10).classes('w-96') as table:
+    with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=get_leaderboard_rows(), selection='multiple', pagination=10).classes('w-half') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
@@ -57,4 +63,6 @@ def get_leaderboard():
 with ui.row():
     get_leaderboard()
     get_answers()
+with ui.column():
+    get_submissions()
 ui.run()
