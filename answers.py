@@ -59,7 +59,7 @@ def substitute_answer_key_rows():
 
 
 def get_answers():
-    with ui.table(title='Answers', columns=get_answer_cols(), rows=substitute_answer_key_rows(), selection='multiple', pagination=10).classes('grid-flow-col') as table:
+    with ui.table(title='Answers', columns=get_answer_cols(), rows=substitute_answer_key_rows(), selection='multiple', pagination=10).classes('grid-flow-col').classes('border-separate border border-slate-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
