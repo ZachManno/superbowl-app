@@ -53,7 +53,7 @@ def get_leaderboard_rows():
         {'id': 6, 'name': 'Carol', 'score': 5},
     ]
 
-
+# Leaderboard - 38 Total Points
 def get_leaderboard():
     with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=get_leaderboard_rows(), selection='multiple', pagination=10).classes('w-half').classes('border-separate border border-slate-700') as table:
         with table.add_slot('top-right'):
@@ -62,9 +62,11 @@ def get_leaderboard():
 
 
 ui.image('/Users/zman/PycharmProjects/superbowl-app/assets/s-l1600.jpeg').classes('object-fill h-60 w-full')
-with ui.row():
+with ui.row(wrap=False):
     get_leaderboard()
     get_answers()
+
+ui.image('/Users/zman/PycharmProjects/superbowl-app/assets/s-l1600.jpeg').classes('object-fill h-32 w-full')
 with ui.column():
     get_submissions()
 ui.run()

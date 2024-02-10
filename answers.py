@@ -48,7 +48,7 @@ def get_answer_rows():
 
 
 def get_answers():
-    with ui.table(title='Answers - 38 Total Points', columns=get_answer_cols(), rows=get_answer_rows(), selection='multiple', pagination=15) as table:
+    with ui.table(title='Answers', columns=get_answer_cols(), rows=get_answer_rows(), selection='multiple', pagination=25).classes('grid-flow-col') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
