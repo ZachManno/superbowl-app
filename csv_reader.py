@@ -14,11 +14,11 @@ def read_csv_to_dict(csv_file):
             for i, name in enumerate(names):
                 if i + 1 < len(row) and row[i + 1].strip():
                     result.setdefault(name, {})[question_number] = row[i + 1].strip()
-
     return result
 
 
 # Example usage
-csv_file = "/Users/zman/Downloads/Superbowl-Prop-Submissions.csv"  # Replace with your CSV file path
-data = read_csv_to_dict(csv_file)
-print(json.dumps(data))
+#csv_file = "/Users/zman/Downloads/Superbowl-Prop-Submissions.csv"  # Replace with your CSV file path
+#data = read_csv_to_dict(csv_file)
+#print(json.dumps(data))
+#print(data)
