@@ -3,9 +3,6 @@ from typing import Union
 from fastapi import FastAPI
 from pydantic import BaseModel
 from nicegui import ui
-from nicegui.events import ValueChangeEventArguments
-import pandas as pd
-from pandas.api.types import is_bool_dtype, is_numeric_dtype
 
 #from answers import get_answer_table
 from answers import get_answers
@@ -61,7 +58,7 @@ def get_leaderboard():
                 ui.icon('search')
 
 
-ui.image('/Users/zman/PycharmProjects/superbowl-app/assets/s-l1600.jpeg').classes('object-fill h-60 w-full')
+ui.image('/Users/zman/PycharmProjects/superbowl-app/assets/s-l1600.jpeg').classes('object-fill h-32 w-full')
 with ui.row(wrap=False):
     get_leaderboard()
     get_answers()
