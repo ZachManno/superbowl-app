@@ -55,7 +55,7 @@ def get_leaderboard_rows():
 
 
 def get_leaderboard():
-    with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=get_leaderboard_rows(), selection='multiple', pagination=10).classes('w-half') as table:
+    with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=get_leaderboard_rows(), selection='multiple', pagination=10).classes('w-half').classes('border-separate border border-slate-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
