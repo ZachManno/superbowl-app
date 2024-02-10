@@ -1,11 +1,13 @@
 from nicegui import ui
 
+from answers import get_question_answer_template
 from csv_reader import read_csv_to_dict
 
 
 def get_submission_cols():
     return [
         {'name': 'name', 'label': 'Name', 'field': 'name', 'required': True},
+        {'name': 'score', 'label': 'Score', 'field': 'score', 'required': True},
         {'name': '1', 'label': 'Q1', 'field': '1', 'required': False},
         {'name': '2', 'label': 'Q2', 'field': '2', 'required': False},
         {'name': '3', 'label': 'Q3', 'field': '3', 'required': False},
@@ -52,9 +54,29 @@ def get_submission_rows():
         # {'id': 1, 'name': 'Zach', '1': 'CHIEFS', '2': 'OVER', '1': '1-5PTS', 'q4': 'OVER', 'q5': 'HEADS', 'q6': 'RED', 'q7': 'UNDER', 'q8': 'UNDER', 'q9': 'YES', 'q10': 'PASS', 'q11': '49ERS', 'q12': 'TOUCHDOWN', },
     #]
 
+def score_submissions_with_answers(answer_rows):
+    submission_rows = get_submission_rows()
+    print("submission_rows: " + str(submission_rows))
+    for submission_dict in submission_rows:
+        score = 0
+        for key, value in submission_dict.items():
+            if key != 'id' and key != 'name':
+                the_answer_row = {}
+                for ans in answer_rows:
+                    if ans['number'] == int(key):
+                        the_answer_row = ans
+                if value == the_answer_row['answer']:
+                    score = score + the_answer_row['points']
+        submission_dict['score'] = score
+    for submission_dict in submission_rows:
+        if 'score' not in submission_dict.keys():
+            submission_dict['score'] = 0
+    return submission_rows
 
-def get_submissions():
-    with ui.table(title='Submissions', columns=get_submission_cols(), rows=get_submission_rows(), selection='multiple', pagination=10).classes('w-full') as table:
+
+
+def get_submissions(submission_rows_with_score):
+    with ui.table(title='Submissions', columns=get_submission_cols(), rows=submission_rows_with_score, selection='multiple', pagination=10).classes('w-full') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')

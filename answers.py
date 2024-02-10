@@ -20,7 +20,7 @@ def get_answer_cols():
 
 
 
-def get_answer_rows():
+def get_question_answer_template():
     return [
         {'id': 1, 'number': 1, 'question': 'Time for Reba McEntire’s National Anthem: 90.5 seconds', 'answer': '?', 'O1': 'OVER or UNDER', 'points': 1},
         {'id': 2, 'number': 2, 'question': 'What will be the primary color of Reba McEntire’s boots?', 'answer': '?', 'O1': 'BLACK/BROWN/RED/OTHER', 'O2': 'BROWN', 'O3': 'RED', 'O4': 'OTHER', 'points': 2},
@@ -50,16 +50,16 @@ def get_answer_rows():
     ]
 
 
-def substitute_answer_key_rows():
+def initialize_answer_rows():
     answer_key = get_answer_key()
-    answer_rows = get_answer_rows()
+    answer_rows = get_question_answer_template()
     for item in answer_rows:
         item['answer'] = answer_key[item['number']]
     return answer_rows
 
 
-def get_answers():
-    with ui.table(title='Answers', columns=get_answer_cols(), rows=substitute_answer_key_rows(), selection='multiple', pagination=10).classes('grid-flow-col').classes('border-separate border border-slate-700') as table:
+def get_answers(answer_rows):
+    with ui.table(title='Answers', columns=get_answer_cols(), rows=answer_rows, selection='multiple', pagination=10).classes('grid-flow-col').classes('border-separate border border-slate-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
