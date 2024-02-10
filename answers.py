@@ -22,7 +22,7 @@ def get_answer_cols():
 
 def get_question_answer_template():
     return [
-        {'id': 1, 'number': 1, 'question': 'Time for Reba McEntire’s National Anthem: 90.5 seconds', 'answer': '?', 'O1': 'OVER or UNDER', 'points': 1},
+        {'id': 1, 'number': 1, 'question': 'Time for Reba McEntire’s National Anthem: 90.5 seconds', 'answer': '?', 'O1': 'OVER/UNDER', 'points': 1},
         {'id': 2, 'number': 2, 'question': 'What will be the primary color of Reba McEntire’s boots?', 'answer': '?', 'O1': 'BLACK/BROWN/RED/OTHER', 'O2': 'BROWN', 'O3': 'RED', 'O4': 'OTHER', 'points': 2},
         {'id': 3, 'number': 3, 'question': 'Will any scoring drive take less time than the anthem?', 'answer': '?','O1': 'YES/NO', 'O2': 'NO', 'points': 1},
         {'id': 4, 'number': 4, 'question': 'Which quarterback will be shown first during the National Anthem?', 'answer': '?','O1': 'PURDY/MAHOMES', 'O2': 'MAHOMES', 'points': 1},
@@ -59,7 +59,7 @@ def initialize_answer_rows():
 
 
 def get_answers(answer_rows):
-    with ui.table(title='Answers', columns=get_answer_cols(), rows=answer_rows, selection='multiple', pagination=10).classes('grid-flow-col').classes('border-separate border border-slate-700') as table:
+    with ui.table(title='Answers - 38 Total Points', columns=get_answer_cols(), rows=answer_rows, selection='multiple', pagination=10).classes('grid-flow-col').classes('border-separate border border-indigo-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')

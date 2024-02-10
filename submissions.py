@@ -76,7 +76,7 @@ def score_submissions_with_answers(answer_rows):
 
 
 def get_submissions(submission_rows_with_score):
-    with ui.table(title='Submissions', columns=get_submission_cols(), rows=submission_rows_with_score, selection='multiple', pagination=10).classes('w-full') as table:
+    with ui.table(title='Submissions', columns=get_submission_cols(), rows=submission_rows_with_score, selection='multiple', pagination=10).classes('w-full border-separate border border-indigo-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')

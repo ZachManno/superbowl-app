@@ -1,8 +1,5 @@
 def get_answer_key():
     return {
-        # 1: 'UNDER',
-        # 2: 'BLACK',
-        # 3: 'NO',
         1: '?',
         2: '?',
         3: '?',

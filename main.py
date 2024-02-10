@@ -53,7 +53,7 @@ def get_leaderboard_cols():
 
 # Leaderboard - 38 Total Points
 def get_leaderboard(submission_rows_with_score):
-    with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=submission_rows_with_score, selection='multiple', pagination=10).classes('w-half').classes('border-separate border border-amber-500') as table:
+    with ui.table(title='Leaderboard', columns=get_leaderboard_cols(), rows=submission_rows_with_score, selection='multiple', pagination=10).classes('w-half').classes('border-separate border border-indigo-700') as table:
         with table.add_slot('top-right'):
             with ui.input(placeholder='Search').props('type=search').bind_value(table, 'filter').add_slot('append'):
                 ui.icon('search')
