@@ -38,7 +38,7 @@ def get_submission_cols():
 
 
 def get_submission_rows():
-    dict_from_csv = read_csv_to_dict("/Users/zman/Downloads/Superbowl-Prop-Submissions.csv")
+    dict_from_csv = read_csv_to_dict("/Users/zman/Documents/Superbowl-Prop-Submissions.csv")
     for name, answers in dict_from_csv.items():
         answers_converted = {str(k): v for k, v in answers.items()}
         dict_from_csv[name] = answers_converted
